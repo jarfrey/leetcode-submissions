@@ -13,45 +13,23 @@
  *     }
  * }
  */
-//I did this problem twice. The first time, in lab, I did it not very well 
-// so I redid it before I looked at the solutions
-// Both of them have the same idea: use recursion to merge trees.
-// How it works is it first checks if both pointers are null. If they are there's no point
-// continuing so it goes back (base case)
-// If only 1 is null, then we just set the output tree to the one non-null
-// In this case tree 2 is our output so if 1 is non-null, 2 gets a new node from 1
-// If 1 is null we lowkey don't care since 2 has it. If statements are structured like that
-// so it makes more sense to read
-// Anyway if 1 is non-null we gotta check if there's more from 1 that aren't null so we check
-// left and right children
-//Otherwise, if both left and right node exist, EZPZ we just combine them
-// then obv we go and look for their left and right children
-// we then return tree2, which will (after all of this) contain the merged tree.
+// this is the last time im changign it
+// base cases: if one of the nodes is null, then we shoudl return the other one
+// this is because even if 
+// if neither nodes are null, we can actually merge by adding root 1 and 2 val together
+// then if neither nodes are null, we should go and find the left and right
 class Solution {
     public TreeNode mergeTrees(TreeNode root1, TreeNode root2) {
-        if(root1 == null && root2 == null){
-            return null;
-        }
-        if(root1 == null || root2 == null){
-            if(root1 != null){
-                TreeNode temp0 = new TreeNode(root1.val);
-                root2 = temp0;
-                root2.left = mergeTrees(root1.left, root2.left);
-                root2.right = mergeTrees(root1.right, root2.right);
-            }
+        if (root1 == null) return root2;
+        if (root2 == null) return root1;
 
-        } else {
-            root2.val = root1.val+root2.val;
-            root2.left = mergeTrees(root1.left, root2.left);
-            root2.right = mergeTrees(root1.right, root2.right);
-        }
+        root2.val += root1.val;
+
+        root2.left = mergeTrees(root1.left, root2.left);
+        root2.right = mergeTrees(root1.right, root2.right);
 
         return root2;
-        
-        // addNode(root1,root2);
-        // return root2;
-        // if not both null, add together, if 1 null, only use that, if both, ignore
-
+    
     }
 }
 
