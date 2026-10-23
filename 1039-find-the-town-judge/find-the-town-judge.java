@@ -17,11 +17,13 @@ class Solution {
         for (int i = 0; i < trust.length;i++){
             trusted[trust[i][1]] += 1;
             if(trusted[trust[i][1]] == n-1){
-                candidates.add(trust[i][1]);
+                if (truster[trust[i][1]] != true){
+                    candidates.add(trust[i][1]);
+                }
             }
             truster[trust[i][0]] = true;
         }
-        
+
         for (int j = 0; j < candidates.size(); j++){
             if (truster[candidates.get(j)] == false){
                 return candidates.get(j);
