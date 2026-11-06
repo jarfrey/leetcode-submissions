@@ -1,5 +1,8 @@
 class Solution {
     public boolean isValid(String s) {
+        if (s.length() % 2 != 0){
+            return false;
+        }
         LinkedList<Character> parenthesis = new LinkedList<Character>();
         for(char a : s.toCharArray()){
             if(a == '(' || a == '{' || a == '['){
